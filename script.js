@@ -2,12 +2,22 @@ const inputBox = document.getElementById("inputcont");
 const listcontainer = document.querySelector(".list");
 const button =  document.getElementById("btn");
 const time = document.querySelector(".clock");
+const taskCounter = document.getElementById("task-counter");
+
 
 function playAudio(){
     const audio = new Audio("1.wav");
     audio.currentTime = 0;
     audio.play();
 }
+
+
+function updateTaskCounter() {
+    const tasks = listcontainer.querySelectorAll("li");
+    const remainingTasks = listcontainer.querySelectorAll("li:not(.checked)").length;
+    taskCounter.innerText = `Tasks Remaining: ${remainingTasks}`;
+}
+
 
 const handler1 = (e)=>{
     if(e.target.tagName ==="LI"){
@@ -43,8 +53,8 @@ const handler2 = () => {
 
 button.addEventListener("click",handler2);
 
-inputBox.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") { 
+inputBox.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") { 
         handler2();
         inputBox.value="";
         saveData();
@@ -75,19 +85,10 @@ setInterval(() => {
 }, 1000);
 
 
-// Add this line to grab your counter display element (you need to add it in the HTML too)
-const taskCounter = document.getElementById("task-counter");
-
-// Function to update the remaining tasks counter
-function updateTaskCounter() {
-    const tasks = listcontainer.querySelectorAll("li");
-    const remainingTasks = Array.from(tasks).filter(task => !task.classList.contains("checked")).length;
-    taskCounter.innerText = `Tasks Remaining: ${remainingTasks}`;
-}
-
-// Call this after showData() to display the correct count on page load
 showData();
 updateTaskCounter();
+
+// -------------------//----------------------//---------------------//------------------//
 
 // Add drag-and-drop functionality
 listcontainer.addEventListener("dragstart", (event) => {
