@@ -8,10 +8,11 @@
 </head>
 <body>
     <div class="container">
+        <span class="clock">00:00:00</span>
         <div class="todo">
             <h2>To Do List <img src="images/icon.png" alt="notebook"></h2> 
             <div class="row">
-                <input type="text" id="inputcont" placeholder="Add your Task">
+                <input type="text" autocomplete="off" id="inputcont" placeholder="Add your Task">
                 <button id="btn">Add</button>
             </div>
             <ul class="list">
@@ -19,9 +20,12 @@
                 <li>Task 2</li>
                 <li>Task 3</li> -->
             </ul>
+            <div id="task-counter">Tasks Remaining: <span>0</span></div>
         </div>
-       
     </div>
     <script src="script.js"></script>
-</body>
+    </body>
 </html>
+
+        
+
